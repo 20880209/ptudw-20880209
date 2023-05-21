@@ -64,20 +64,20 @@ app.use('/', require('./routes/indexRouter'));
 app.use('/products',require('./routes/productsRouter'));
 
 //Nếu như có error
-app.use((req,res,next)=>{
-    res.status(404).render('error',{message : 'File not Found'})
-})
-app.use((error,req,res,next)=>{
-    console.error('error'); //Để ta có thể thấy bên phía server
-    res.status(500).render('error','Internal Server Error!');
-})
-
-// app.get('/createTables',(req,res)=>{
-//     let models = require('./models');
-//     models.sequelize.sync().then(()=>{
-//         res.send("bảng đã dc tạo xong");
-//     })
+// app.use((req,res,next)=>{
+//     res.status(404).render('error',{message : 'File not Found'})
 // })
+// app.use((error,req,res,next)=>{
+//     console.error('error'); //Để ta có thể thấy bên phía server
+//     res.status(500).render('error','Internal Server Error!');
+// })
+
+app.get('/createTables',(req,res)=>{
+    let models = require('./models');
+    models.sequelize.sync().then(()=>{
+        res.send("bảng đã dc tạo xong");
+    })
+})
 
 // app.get('/',(req,res)=>{
 //     res.render('index');
